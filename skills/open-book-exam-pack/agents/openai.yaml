@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Book Exam Pack"
+  short_description: "Build open-book exam PDFs from course materials."
+  default_prompt: "Create a structured open-book exam review PDF from course materials, past papers, and textbook page references."
