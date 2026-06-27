@@ -1,4 +1,4 @@
 interface:
   display_name: "Open Book Exam Pack"
-  short_description: "Build open-book exam PDFs from course materials."
-  default_prompt: "Create a structured open-book exam review PDF from course materials, past papers, and textbook page references."
+  short_description: "Build exam-ready open-book PDFs from courseware, past papers, and textbook page indexes."
+  default_prompt: "Create a structured open-book exam review PDF from course materials, past papers, and verified textbook page references. Keep answers directly usable, preserve source accuracy, and place calculation walkthroughs at the end."

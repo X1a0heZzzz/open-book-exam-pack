@@ -12,6 +12,12 @@ open-book-exam-pack
 Codex Skill for building open-book exam review PDFs from courseware, past papers, and textbook page indexes.
 ```
 
+## Website / social summary
+
+```text
+Turn courseware, past papers, scanned textbooks, and layout preferences into exam-ready open-book PDFs with answer templates, calculation walkthroughs, and verified textbook page lookup tables.
+```
+
 ## About
 
 ```text
@@ -54,6 +60,7 @@ Features:
 - Generates textbook-only page lookup tables from confirmed textbook TOC entries.
 - Standardizes answer templates for short-answer, subjective, and calculation questions.
 - Preserves user preferences such as larger font, tighter layout, no blank pages, and calculation appendix placement.
+- Adds install and validation scripts for local Codex skill setup.
 ```
 
 ## PR title

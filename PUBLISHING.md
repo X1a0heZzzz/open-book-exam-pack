@@ -1,27 +1,26 @@
 # 发布到 GitHub
 
-## 方法一：网页上传
+这个仓库已经按公开 Codex Skill 项目整理，可直接推送到 GitHub。
 
-1. 打开 GitHub，创建新仓库。
-2. 仓库名建议：`open-book-exam-pack`。
-3. 描述使用 `GITHUB_TEXT.md` 里的 Short description。
-4. 上传本目录下所有文件：
-   - `README.md`
-   - `GITHUB_TEXT.md`
-   - `PUBLISHING.md`
-   - `LICENSE.md`
-   - `.gitignore`
-   - `skills/open-book-exam-pack/SKILL.md`
-   - `skills/open-book-exam-pack/agents/openai.yaml`
-5. 提交信息使用：
+## GitHub 仓库信息
 
-```text
-Add open-book exam pack Codex skill
+- Repository name: `open-book-exam-pack`
+- Description: `Codex Skill for building open-book exam review PDFs from courseware, past papers, and textbook page indexes.`
+- Topics: `codex-skill`, `open-book-exam`, `study-notes`, `pdf`, `ocr`, `exam-prep`, `education`
+
+更多文案见 `GITHUB_TEXT.md`。
+
+## 命令行发布
+
+如果本地已经有仓库权限：
+
+```powershell
+git add .
+git commit -m "Improve docs and skill install workflow"
+git push origin main
 ```
 
-## 方法二：命令行上传
-
-在本目录运行：
+如果是首次创建远程仓库：
 
 ```powershell
 git init
@@ -32,11 +31,24 @@ git remote add origin https://github.com/<your-name>/open-book-exam-pack.git
 git push -u origin main
 ```
 
-把 `<your-name>` 换成你的 GitHub 用户名或组织名。
+把 `<your-name>` 换成 GitHub 用户名或组织名。
+
+## 网页发布
+
+1. 在 GitHub 创建公开仓库 `open-book-exam-pack`。
+2. 使用 `GITHUB_TEXT.md` 中的 Short description 和 Topics。
+3. 上传仓库全部文件。
+4. 提交信息使用 `Add open-book exam pack Codex skill`。
 
 ## 安装这个 Skill
 
-从仓库下载后，把 Skill 目录复制到 Codex skills 目录：
+从仓库下载后运行：
+
+```powershell
+.\scripts\install.ps1
+```
+
+也可以手动复制：
 
 ```powershell
 Copy-Item -Recurse .\skills\open-book-exam-pack "$env:USERPROFILE\.codex\skills\open-book-exam-pack" -Force
@@ -46,12 +58,14 @@ Copy-Item -Recurse .\skills\open-book-exam-pack "$env:USERPROFILE\.codex\skills\
 
 ## 验证
 
-如果你本机有 Codex skill-creator 的校验脚本，可运行：
-
 ```powershell
-$env:PYTHONUTF8='1'
-python "$env:USERPROFILE\.codex\skills\.system\skill-creator\scripts\quick_validate.py" "$env:USERPROFILE\.codex\skills\open-book-exam-pack"
+.\scripts\validate.ps1
 ```
 
-看到 `Skill is valid!` 即可。
+默认会执行基础文件检查。
 
+完整校验可用：
+
+```powershell
+.\scripts\validate.ps1 -Full
+```
