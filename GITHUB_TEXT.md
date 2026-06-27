@@ -66,6 +66,7 @@ Features:
 - Preserves user preferences such as larger font, tighter layout, no blank pages, and calculation appendix placement.
 - Adds install and validation scripts for local Codex skill setup.
 - Adds public-facing quick-start prompts, workflow modes, agent orientation notes, and reusable examples.
+- Adds an English README for international users.
 ```
 
 ## PR title

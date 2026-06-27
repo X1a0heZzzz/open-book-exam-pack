@@ -1,5 +1,7 @@
 # Open Book Exam Pack Skill
 
+[中文](README.md) | [English](README.en.md)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
 ![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)
 ![Exam Prep](https://img.shields.io/badge/Exam-Prep-orange)
@@ -152,6 +154,7 @@ scripts/
 references/
   examples.md
 AGENTS.md
+README.en.md
 ```
 
 ## 文件用途
@@ -164,6 +167,7 @@ AGENTS.md
 | `scripts/validate.ps1` | 检查核心文件是否完整，可选调用本机完整校验器。 |
 | `references/examples.md` | 可复制的使用示例和预期输出形态。 |
 | `AGENTS.md` | 给 coding agent 的快速接手说明。 |
+| `README.en.md` | 英文版项目介绍，方便国际用户安装和使用。 |
 | `GITHUB_TEXT.md` | GitHub About、topics、release notes 等公开展示文案。 |
 
 ## 设计原则

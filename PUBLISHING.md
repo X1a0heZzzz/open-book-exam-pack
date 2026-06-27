@@ -10,6 +10,11 @@
 
 更多文案见 `GITHUB_TEXT.md`。
 
+README 语言入口：
+
+- 中文：`README.md`
+- English: `README.en.md`
+
 ## 命令行发布
 
 如果本地已经有仓库权限：
