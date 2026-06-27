@@ -28,12 +28,16 @@ Reusable Codex workflow for turning course materials, scanned PDFs, past exam pa
 
 ```text
 codex-skill
+agent-skill
 open-book-exam
 study-notes
+study-tools
+study-guide
 pdf
 ocr
 exam-prep
 education
+ai-agent
 ```
 
 ## Initial commit message
@@ -61,6 +65,7 @@ Features:
 - Standardizes answer templates for short-answer, subjective, and calculation questions.
 - Preserves user preferences such as larger font, tighter layout, no blank pages, and calculation appendix placement.
 - Adds install and validation scripts for local Codex skill setup.
+- Adds public-facing quick-start prompts, workflow modes, agent orientation notes, and reusable examples.
 ```
 
 ## PR title

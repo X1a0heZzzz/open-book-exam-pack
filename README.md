@@ -1,8 +1,33 @@
 # Open Book Exam Pack Skill
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
+![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)
+![Exam Prep](https://img.shields.io/badge/Exam-Prep-orange)
+![PDF Workflow](https://img.shields.io/badge/PDF-Workflow-lightgrey)
+
 一个用于生成“开卷考试资料包”的 Codex Skill。它把课程课件、往年试卷、教材 PDF 和排版要求整合成可打印、可翻查、能在考试中快速定位答案的复习 PDF。
 
-这个技能的重点不是普通摘要，而是把资料整理成“考场可用”的结构：章节速查、 高频答题模板、主观题骨架、计算题步骤、教材页码索引和最终 PDF 排版。
+这个技能的重点不是普通摘要，而是把资料整理成“考场可用”的结构：章节速查、高频答题模板、主观题骨架、计算题步骤、教材页码索引和最终 PDF 排版。
+
+## Quick Start
+
+把下面这段直接发给 Codex，并替换课程信息和文件路径：
+
+```text
+请使用 open-book-exam-pack skill，帮我把课程资料整理成开卷考试 PDF。
+
+课程：<课程名称和考试范围>
+课件路径：<课件 PDF/PPT 文件夹>
+往年试卷路径：<试卷 PDF 文件夹，可选>
+教材路径：<教材 PDF，可选>
+
+要求：
+- 按章节做速查。
+- 提炼高频简答题和主观题模板。
+- 如果有教材目录，请加入教材页码速查。
+- 计算题步骤详细，单独放在最后。
+- 排版紧凑但保持可读，最终 PDF 放到 outputs/。
+```
 
 ## 适合什么场景
 
@@ -22,6 +47,28 @@
 - 将计算题作为最后独立附录，写完整教程式解题步骤。
 - 在只允许携带实体教材时，删除 PDF 页码，只保留教材印刷页码。
 - 将最终 PDF 默认保存到 `outputs/`，把中间 OCR、预览图和脚本放到 `work/`。
+
+## 工作模式
+
+| 模式 | 适合场景 | 主要输出 |
+| --- | --- | --- |
+| `pack` | 从课件、旧卷和教材生成完整开卷资料包 | 一份结构化 PDF |
+| `page-index` | 只想做教材页码速查 | 知识点到教材页码的表格 |
+| `past-paper` | 重点分析往年试卷 | 高频题型、考点频率、答题模板 |
+| `calculation` | 计算题是主要风险点 | 步骤化解题模板和易错点 |
+| `polish` | 已有资料但排版不好 | 更清晰、紧凑、可打印的版本 |
+
+不用显式写模式也可以；Codex 会根据你的材料和要求自动选择。
+
+## 你会得到什么
+
+- 一个适合打印或电子开卷翻查的 PDF。
+- 按章节组织的知识点速查。
+- 能直接落笔的简答题和主观题模板。
+- 从旧卷提炼的高频题型和可能借鉴题型。
+- 经过核验的教材页码表。
+- 独立的计算题附录。
+- 对缺失材料、OCR 不确定点和外部补充来源的说明。
 
 ## 安装
 
@@ -102,7 +149,22 @@ skills/
 scripts/
   install.ps1
   validate.ps1
+references/
+  examples.md
+AGENTS.md
 ```
+
+## 文件用途
+
+| 文件 | 用途 |
+| --- | --- |
+| `skills/open-book-exam-pack/SKILL.md` | Skill 主说明，定义触发场景、工作模式、处理流程和质量约束。 |
+| `skills/open-book-exam-pack/agents/openai.yaml` | OpenAI/Codex 侧展示信息和默认提示词。 |
+| `scripts/install.ps1` | 将 skill 安装到本机 Codex skills 目录。 |
+| `scripts/validate.ps1` | 检查核心文件是否完整，可选调用本机完整校验器。 |
+| `references/examples.md` | 可复制的使用示例和预期输出形态。 |
+| `AGENTS.md` | 给 coding agent 的快速接手说明。 |
+| `GITHUB_TEXT.md` | GitHub About、topics、release notes 等公开展示文案。 |
 
 ## 设计原则
 
@@ -111,6 +173,24 @@ scripts/
 - 页码是否来自教材目录或正文确认。
 - 计算题步骤是否完整。
 - 排版是否可读，而不是一味压缩页数。
+
+## Troubleshooting
+
+| 问题 | 处理方式 |
+| --- | --- |
+| Skill 没有自动触发 | 显式在提示词里写“请使用 open-book-exam-pack skill”，或重新运行 `.\scripts\install.ps1` 后重启 Codex。 |
+| `validate.ps1 -Full` 报缺少 Python 依赖 | 先用默认 `.\scripts\validate.ps1` 做基础检查；完整校验依赖本机 Codex validator 的运行环境。 |
+| PDF 文字抽不出来 | 很可能是扫描件，按 skill 流程走页面渲染和 OCR。 |
+| 教材页码和 PDF 页码对不上 | 以教材目录或正文印刷页码为准；电子 PDF 页码必须先确认偏移量。 |
+| 输出太密或字太小 | 要求 `polish` 模式，优先可读性，允许增加页数。 |
+
+## 参考项目
+
+这个仓库借鉴了几个公开学习/考试类 agent 项目的展示方式：
+
+- [Pattyboi101/open-book-exam-prep](https://github.com/Pattyboi101/open-book-exam-prep)：把“复制给 agent 的快速开始”和最终产物写得很清楚。
+- [planetis-m/study-assistant](https://github.com/planetis-m/study-assistant)：用模式区分转写、笔记、测验、作文等学习任务。
+- [deusyu/superforecasting-skill](https://github.com/deusyu/superforecasting-skill)：用文件用途表和故障排查说明帮助别人快速接手。
 
 ## License
 

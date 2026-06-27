@@ -6,7 +6,7 @@
 
 - Repository name: `open-book-exam-pack`
 - Description: `Codex Skill for building open-book exam review PDFs from courseware, past papers, and textbook page indexes.`
-- Topics: `codex-skill`, `open-book-exam`, `study-notes`, `pdf`, `ocr`, `exam-prep`, `education`
+- Topics: `codex-skill`, `agent-skill`, `open-book-exam`, `study-notes`, `study-tools`, `study-guide`, `pdf`, `ocr`, `exam-prep`, `education`, `ai-agent`
 
 更多文案见 `GITHUB_TEXT.md`。
 
