@@ -1,0 +1,5 @@
+pymupdf>=1.24
+reportlab>=4.0
+# Optional OCR engines for scanned PDFs (install one):
+# rapidocr_onnxruntime>=1.3
+# pytesseract>=0.3 and pillow>=10   (also needs the Tesseract binary with chi_sim)

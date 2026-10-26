@@ -9,7 +9,7 @@ open-book-exam-pack
 ## Short description
 
 ```text
-Codex Skill for building open-book exam review PDFs from courseware, past papers, and textbook page indexes.
+Codex / Claude Code skill for building open-book exam review PDFs from courseware, past papers, and verified textbook page indexes.
 ```
 
 ## Website / social summary
@@ -21,13 +21,15 @@ Turn courseware, past papers, scanned textbooks, and layout preferences into exa
 ## About
 
 ```text
-Reusable Codex workflow for turning course materials, scanned PDFs, past exam papers, and textbook tables of contents into structured open-book exam PDFs with answer templates, calculation tutorials, and accurate textbook page lookup tables.
+Reusable Codex / Claude Code workflow, with bundled Python tools, for turning course materials, scanned PDFs, past exam papers, and textbook tables of contents into structured open-book exam PDFs with answer templates, calculation tutorials, and accurate textbook page lookup tables.
 ```
 
 ## Topics
 
 ```text
 codex-skill
+claude-code
+claude-skill
 agent-skill
 open-book-exam
 study-notes
@@ -49,10 +51,23 @@ Add open-book exam pack Codex skill
 ## Release title
 
 ```text
-v1.0.0 - Open Book Exam Pack Skill
+v1.1.0 - Bundled tools and Claude Code support
 ```
 
 ## Release notes
+
+```markdown
+Highlights:
+- Bundled Python tools: material inventory, text extraction with OCR fallback, textbook page-offset measurement and spot checks, and a Markdown-to-PDF builder with CJK fonts.
+- Course-agnostic SKILL.md with a past-paper analysis step; the AI-course checklist is now an example reference.
+- Generic answer templates and the pack Markdown format as skill references.
+- Install to Codex and/or Claude Code (`install.ps1 -Target`, new `install.sh` for macOS/Linux).
+- CI validation on Ubuntu and Windows.
+
+See CHANGELOG.md for details.
+```
+
+### v1.0.0
 
 ```markdown
 Initial release of the Open Book Exam Pack Codex Skill.

@@ -1,19 +1,27 @@
 # 发布到 GitHub
 
-这个仓库已经按公开 Codex Skill 项目整理，可直接推送到 GitHub。
+这个仓库已经按公开 Agent Skill 项目整理，可直接推送到 GitHub。
 
 ## GitHub 仓库信息
 
 - Repository name: `open-book-exam-pack`
-- Description: `Codex Skill for building open-book exam review PDFs from courseware, past papers, and textbook page indexes.`
-- Topics: `codex-skill`, `agent-skill`, `open-book-exam`, `study-notes`, `study-tools`, `study-guide`, `pdf`, `ocr`, `exam-prep`, `education`, `ai-agent`
+- Description: `Codex / Claude Code skill for building open-book exam review PDFs from courseware, past papers, and verified textbook page indexes.`
+- Topics: `codex-skill`, `claude-code`, `claude-skill`, `agent-skill`, `open-book-exam`, `study-notes`, `study-tools`, `study-guide`, `pdf`, `ocr`, `exam-prep`, `education`, `ai-agent`
 
-更多文案见 `GITHUB_TEXT.md`。
+更多文案见 `GITHUB_TEXT.md`，版本记录见 `CHANGELOG.md`。
 
 README 语言入口：
 
 - 中文：`README.md`
 - English: `README.en.md`
+
+## 发布前检查
+
+```powershell
+.\scripts\validate.ps1 -Full
+```
+
+推送到 `main` 后，GitHub Actions（`.github/workflows/validate.yml`）会在 Ubuntu 和 Windows 上重复这项检查。
 
 ## 命令行发布
 
@@ -21,8 +29,15 @@ README 语言入口：
 
 ```powershell
 git add .
-git commit -m "Improve docs and skill install workflow"
+git commit -m "<变更说明>"
 git push origin main
+```
+
+发布新版本时打标签，并用 `GITHUB_TEXT.md` 中的 Release notes 创建 Release：
+
+```powershell
+git tag v1.1.0
+git push origin v1.1.0
 ```
 
 如果是首次创建远程仓库：
@@ -30,7 +45,7 @@ git push origin main
 ```powershell
 git init
 git add .
-git commit -m "Add open-book exam pack Codex skill"
+git commit -m "Add open-book exam pack skill"
 git branch -M main
 git remote add origin https://github.com/<your-name>/open-book-exam-pack.git
 git push -u origin main
@@ -38,39 +53,16 @@ git push -u origin main
 
 把 `<your-name>` 换成 GitHub 用户名或组织名。
 
-## 网页发布
-
-1. 在 GitHub 创建公开仓库 `open-book-exam-pack`。
-2. 使用 `GITHUB_TEXT.md` 中的 Short description 和 Topics。
-3. 上传仓库全部文件。
-4. 提交信息使用 `Add open-book exam pack Codex skill`。
-
 ## 安装这个 Skill
 
 从仓库下载后运行：
 
 ```powershell
-.\scripts\install.ps1
+.\scripts\install.ps1 -WithDeps            # Windows
 ```
 
-也可以手动复制：
-
-```powershell
-Copy-Item -Recurse .\skills\open-book-exam-pack "$env:USERPROFILE\.codex\skills\open-book-exam-pack" -Force
+```bash
+sh scripts/install.sh --with-deps          # macOS / Linux
 ```
 
-然后重启或刷新 Codex。
-
-## 验证
-
-```powershell
-.\scripts\validate.ps1
-```
-
-默认会执行基础文件检查。
-
-完整校验可用：
-
-```powershell
-.\scripts\validate.ps1 -Full
-```
+也可以手动把 `skills/open-book-exam-pack` 文件夹复制到 `~/.codex/skills/` 或 `~/.claude/skills/`，然后重启或刷新 Agent。
