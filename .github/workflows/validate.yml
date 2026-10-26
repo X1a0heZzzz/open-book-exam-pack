@@ -1,0 +1,47 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install -r skills/open-book-exam-pack/scripts/requirements.txt
+
+      - name: Validate skill and smoke-test scripts
+        shell: pwsh
+        run: ./scripts/validate.ps1 -Full
+
+      - name: Test install script (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          sh scripts/install.sh --dir "$RUNNER_TEMP/skills"
+          test -f "$RUNNER_TEMP/skills/open-book-exam-pack/SKILL.md"
+
+      - name: Test install script (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          ./scripts/install.ps1 -SkillsDir "$env:RUNNER_TEMP\skills"
+          if (-not (Test-Path "$env:RUNNER_TEMP\skills\open-book-exam-pack\SKILL.md")) { exit 1 }
+
+      - name: Upload sample PDF
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-pack-pdf
+          path: work/validate/sample-pack.pdf
